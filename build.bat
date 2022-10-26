@@ -6,7 +6,7 @@ echo you also need sdl2 headers to be in gcc's headers
 pause
 mkdir out
 :: compile (gcc)
-gcc ./src/multiplayer-pong.c -lSDL2main -lSDL2 -o ./out/pong.exe
+gcc ./src/pong.c -lSDL2main -lSDL2 -o ./out/pong.exe
 :: sdl2
 copy "./SDL2.dll" "./out/SDL2.dll"
 copy "./sdl2-config" "./out/sdl2-config"
