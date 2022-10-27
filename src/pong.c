@@ -62,7 +62,7 @@ int menu(SDL_Window *window,SDL_Surface *renderer) {
 	
 	return 1;
 }
-int game(SDL_Window *window,SDL_Renderer *renderer) {
+int game(SDL_Window *window,SDL_Renderer *renderer,int clockk) {
 	int point1=0; // points for p1
 	int point2=0; // points for p2
 	SDL_Rect pong1;
@@ -102,7 +102,7 @@ int game(SDL_Window *window,SDL_Renderer *renderer) {
 	int disabled=0; // if its dramatic pause time
 	// get direction "randomly"
 	int ball_direction;
-	int variancy=((clock()/10000)+(clock()/10000))*2; // "random" so the ball isnt predictable
+	int variancy=((clockk/10000)+(clockk/10000))*2; // "random" so the ball isnt predictable
 	if (clock() % 2 == 0) { // if odd
 		ball_direction=0; // left
 	}
@@ -242,6 +242,7 @@ int main() {
 	if (window_surface==NULL) {printf("fail surface");}
 	SDL_RenderSetLogicalSize(renderer, 400, 400);
 	int from;
+	int clockk=clock(); // for "random" generation, clock speed differes every time it plays
 	while (1) {
 		// menu (separate gameloop)
 		from=menu(window,window_surface);
@@ -249,7 +250,7 @@ int main() {
 			return 0;
 		}
 		// game (separate gameloop)
-		from=game(window,renderer);
+		from=game(window,renderer,clockk);
 		if (from!=0) {
 			return 0;
 		}
